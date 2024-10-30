@@ -1,23 +1,30 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='pyconfviewer',
-    version='0.1.0',
-    description='A Python library to visualize and compare configuration files as HTML reports.',
-    author='pkaiy81',
-    author_email='あなたのメールアドレス',
-    url='https://github.com/pkaiy81/pyconfviewer',
-    packages=find_packages(where='src'),
-    package_dir={'': 'src'},
+    name="pyconfviewer",
+    version="0.1",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
+    include_package_data=True,
     install_requires=[
-        'PyYAML',
-        'jinja2',
-        'deepdiff',
-        'python-dotenv',
-        # 他の依存パッケージ
+        "pyyaml",
+        "jsonschema",
+        "configparser",
+        "python-dotenv",
     ],
+    entry_points={
+        "console_scripts": [
+            "pyconfviewer = pyconfviewer.__main__:main",
+        ],
+    },
+    description="A Python library for generating HTML views and diffs for configuration files.",
+    author="pkaiy81",
+    author_email="pkaiy81@outlook.com",
+    url="https://github.com/pkaiy81/pyconfviewer",
     classifiers=[
-        'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
     ],
+    python_requires=">=3.6",
 )

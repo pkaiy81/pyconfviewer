@@ -1,12 +1,15 @@
 import os
 import json
 from deepdiff import DeepDiff
+from jinja2 import Environment, FileSystemLoader
 
 
 class DiffGenerator:
     def __init__(self):
         # Define the base path where the templates are stored (relative to this script's directory)
-        self.base_dir = os.path.dirname(__file__)  # This will be 'src/pyconfviewer'
+        self.base_dir = os.path.dirname(__file__)
+        template_path = os.path.join(self.base_dir, "templates")
+        self.env = Environment(loader=FileSystemLoader(template_path))
 
     def generate_diff(self, configs_a, configs_b):
         diffs = {}
@@ -19,32 +22,19 @@ class DiffGenerator:
         return diffs
 
     def generate_diff_html(
-        self,
-        diffs,
-        output_dir="static/json",
-        output_html_path="output/diff_report.html",
+        self, diffs, output_dir="output", output_html_path="output/diff_report.html"
     ):
-        # 1. Save the diffs to a JSON file
+        # Ensure output directory exists
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
 
-        json_output_path = os.path.join(output_dir, "diffs.json")
-        with open(json_output_path, "w") as json_file:
-            json.dump(diffs, json_file, indent=4)
+        # Convert diffs to JSON string with escaped quotes
+        diffs_json = json.dumps(diffs).replace('"', '\\"')
 
-        # 2. Define the template path relative to this script's directory
-        html_template_path = os.path.join(
-            self.base_dir, "templates", "config_diff_viewer.html"
-        )
+        # Render HTML with embedded JSON data
+        template = self.env.get_template("config_diff_viewer.html")
+        rendered_html = template.render(diffs_json=diffs_json)
 
-        # 3. Generate the HTML that loads the JSON data via fetch()
-        self._generate_html(html_template_path, output_html_path)
-
-    def _generate_html(self, template_path, output_html_path):
-        # 4. Read the template file
-        with open(template_path, "r") as template_file:
-            html_content = template_file.read()
-
-        # 5. Write the content to the output HTML file
-        with open(output_html_path, "w") as output_html_file:
-            output_html_file.write(html_content)
+        # Write the rendered HTML to the output path
+        with open(output_html_path, "w", encoding="utf-8") as f:
+            f.write(rendered_html)

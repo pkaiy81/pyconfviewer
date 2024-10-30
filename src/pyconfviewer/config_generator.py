@@ -1,31 +1,29 @@
 import os
 import json
+from jinja2 import Environment, FileSystemLoader
+
 
 class ConfigGenerator:
     def __init__(self):
         # Define the base path where the templates are stored (relative to this script's directory)
         self.base_dir = os.path.dirname(__file__)  # This will be 'src/pyconfviewer'
+        template_path = os.path.join(self.base_dir, "templates")
+        self.env = Environment(loader=FileSystemLoader(template_path))
 
-    def generate_config_html(self, configs, output_dir='static/json', output_html_path='output/config_report.html'):
-        # 1. Save the configs to a JSON file
+    def generate_config_html(
+        self, configs, output_dir="output", output_html_path="output/config_report.html"
+    ):
+        # Ensure output directory exists
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
-        
-        json_output_path = os.path.join(output_dir, 'configs.json')
-        with open(json_output_path, 'w') as json_file:
-            json.dump(configs, json_file, indent=4)
-        
-        # 2. Define the template path relative to this script's directory
-        html_template_path = os.path.join(self.base_dir, 'templates', 'config_viewer.html')
-        
-        # 3. Generate the HTML that loads the JSON data via fetch()
-        self._generate_html(html_template_path, output_html_path)
 
-    def _generate_html(self, template_path, output_html_path):
-        # 4. Read the template file
-        with open(template_path, 'r') as template_file:
-            html_content = template_file.read()
+        # Convert configs to JSON string with escaped quotes
+        configs_json = json.dumps(configs).replace('"', '\\"')
 
-        # 5. Write the content to the output HTML file
-        with open(output_html_path, 'w') as output_html_file:
-            output_html_file.write(html_content)
+        # Render HTML with embedded JSON data
+        template = self.env.get_template("config_viewer.html")
+        rendered_html = template.render(configs_json=configs_json)
+
+        # Write the rendered HTML to the output path
+        with open(output_html_path, "w", encoding="utf-8") as f:
+            f.write(rendered_html)

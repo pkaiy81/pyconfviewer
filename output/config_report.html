@@ -20,7 +20,7 @@
 
     <script>
         // Use embedded JSON data
-        var configsData = JSON.parse("{{ configs_json|safe }}");
+        var configsData = JSON.parse("{\".env\": {\"DATABASE_URL\": \"postgres://user:password@localhost:5432/db\", \"SECRET_KEY\": \"mysecretkey\"}, \"file1.yaml\": {\"key1\": \"value1\", \"key2\": \"value2\"}, \"file2.json\": {\"key1\": \"value1\", \"key3\": \"value3\"}, \"settings.ini\": {}}");
     
         $(document).ready(function() {
             var tabList = $('#configTabs');
