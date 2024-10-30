@@ -4,7 +4,7 @@ setup(
     name='pyconfviewer',
     version='0.1.0',
     description='A Python library to visualize and compare configuration files as HTML reports.',
-    author='Kohei Kishimoto',
+    author='pkaiy81',
     author_email='あなたのメールアドレス',
     url='https://github.com/pkaiy81/pyconfviewer',
     packages=find_packages(where='src'),
