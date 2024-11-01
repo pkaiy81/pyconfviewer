@@ -13,7 +13,7 @@ Please let me know if you use the other configuration files as issues or pull re
 
 ## Requirements
 
-- Python 3.7 or higher(latest version is 3.13 as of now)
+- Python 3.8 or higher(latest version is 3.13 as of now)
 
 ## Installation
 

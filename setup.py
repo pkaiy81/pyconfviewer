@@ -11,11 +11,12 @@ setup(
         "jsonschema",
         "configparser",
         "python-dotenv",
+        "jinja2",  # Add jinja2 to the list of required packages
     ],
     extras_require={
         "dev": [
             "pytest>=6.0.0",
-            # Add any other development dependencies here if needed
+            # other development dependencies if needed
         ],
     },
     entry_points={
@@ -32,5 +33,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.6",
+    python_requires=">=3.8",
 )
