@@ -12,6 +12,12 @@ setup(
         "configparser",
         "python-dotenv",
     ],
+    extras_require={
+        "dev": [
+            "pytest>=6.0.0",
+            # Add any other development dependencies here if needed
+        ],
+    },
     entry_points={
         "console_scripts": [
             "pyconfviewer = pyconfviewer.__main__:main",
