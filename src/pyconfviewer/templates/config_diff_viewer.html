@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Configuration Diff Viewer</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/diff2html/3.1.14/diff2html.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/diff2html@3.1.14/bundles/css/diff2html.min.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -13,18 +13,24 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/diff2html/3.1.14/diff2html-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/diff2html@3.1.14/bundles/js/diff2html.min.js"></script>
 
     <script>
         // Use embedded JSON data
-        var diffsData = JSON.parse("{{ diffs_json|safe }}");
+        var diffsData = JSON.parse("{{ diffs_json }}");
 
         $(document).ready(function() {
             Object.keys(diffsData).forEach(function(filename, index) {
-                var diffString = JSON.stringify(diffsData[filename], null, 2);  // Pretty print JSON
-                var diffHtml = Diff2HtmlUI({ diff: diffString, outputFormat: 'line-by-line' });
-                
-                // Append diff content to the page
+                var diffString = diffsData[filename];  // Unified diff format
+
+                // Generate HTML diff output
+                var diffHtml = Diff2Html.html(diffString, {
+                    inputFormat: 'unified',
+                    outputFormat: 'line-by-line',
+                    showFiles: true,
+                    matching: 'lines'
+                });
+
                 $('#diff-content').append('<h2>' + filename + '</h2><div id="diff-' + index + '">' + diffHtml + '</div>');
             });
         });

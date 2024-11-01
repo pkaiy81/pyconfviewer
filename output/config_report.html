@@ -20,8 +20,8 @@
 
     <script>
         // Use embedded JSON data
-        var configsData = JSON.parse("{\".env\": {\"DATABASE_URL\": \"postgres://user:password@localhost:5432/db\", \"SECRET_KEY\": \"mysecretkey\"}, \"file1.yaml\": {\"key1\": \"value1\", \"key2\": \"value2\"}, \"file2.json\": {\"key1\": \"value1\", \"key3\": \"value3\"}, \"settings.ini\": {}}");
-    
+        var configsData = JSON.parse("{\".env\": {\"DATABASE_URL\": \"postgres://user:password@localhost:5432/db\", \"SECRET_KEY\": \"mysecretkey\"}, \"file1.yaml\": {\"key1\": \"value1\", \"key2\": \"value2\"}, \"file2.json\": {\"key1\": \"value1\", \"key3\": \"value3\"}, \"settings.ini\": {\"DEFAULT\": {\"serveraliveinterval\": \"45\", \"compression\": \"yes\", \"compressionlevel\": \"9\"}}}");
+
         $(document).ready(function() {
             var tabList = $('#configTabs');
             var tabContent = $('#configTabsContent');
@@ -31,12 +31,13 @@
                     <a class="nav-link ${isActive}" id="tab-${index}-tab" data-toggle="tab" href="#tab-${index}" role="tab">${filename}</a>
                 </li>`;
                 tabList.append(tabItem);
-    
+
                 var tabPane = `<div class="tab-pane fade ${isActive ? 'show active' : ''}" id="tab-${index}" role="tabpanel">
                     <div id="treeview-${index}" class="treeview"></div>
                 </div>`;
                 tabContent.append(tabPane);
-    
+
+                // Initialize jstree for this tab's content
                 $(`#treeview-${index}`).jstree({
                     'core' : {
                         'data' : buildTree(configsData[filename])
@@ -44,17 +45,20 @@
                     'plugins' : ['search']
                 });
             });
-    
+
             var to = false;
             $('#search-input').keyup(function () {
-                if(to) { clearTimeout(to); }
+                if (to) { clearTimeout(to); }
                 to = setTimeout(function () {
                     var v = $('#search-input').val();
-                    $('.treeview').jstree(true).search(v);
+                    // Perform search on all jstree instances
+                    $('.treeview').each(function() {
+                        $(this).jstree(true).search(v);
+                    });
                 }, 250);
             });
         });
-    
+
         function buildTree(obj) {
             var result = [];
             for (var key in obj) {
