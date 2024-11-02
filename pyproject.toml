@@ -19,9 +19,6 @@ classifiers = [
 ]
 keywords = ["configuration", "HTML", "diff", "YAML", "JSON", "env"]
 
-[project.urls]
-Homepage = "https://github.com/pkaiy81/pyconfviewer"
-
 [project.dependencies]
 pyyaml = "*"
 jsonschema = "*"
@@ -37,11 +34,7 @@ dev = [
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-packages = ["pyconfviewer"]
-
-[tool.setuptools.packages.find]
-where = ["src"]
-exclude = ["tests"]
+packages = { find = { where = ["src"], include = ["pyconfviewer"], exclude = ["tests"] } }
 
 [project.scripts]
 pyconfviewer = "pyconfviewer.__main__:main"
