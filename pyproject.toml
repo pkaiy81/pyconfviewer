@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -40,6 +40,9 @@ dev = [
 [tool.setuptools]
 package-dir = {"" = "src"}
 packages = { find = { where = ["src"], include = ["pyconfviewer"], exclude = ["tests"] } }
+
+[tool.setuptools.dynamic]
+version = {attr = "pyconfviewer.__version__"}
 
 [project.scripts]
 pyconfviewer = "pyconfviewer.__main__:main"
