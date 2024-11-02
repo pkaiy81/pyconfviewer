@@ -18,6 +18,13 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 keywords = ["configuration", "HTML", "diff", "YAML", "JSON", "env"]
+dependencies = [
+    "pyyaml",
+    "jsonschema",
+    "configparser",
+    "python-dotenv",
+    "jinja2",
+]
 
 [project.urls]
 Homepage = "https://github.com/pkaiy81/pyconfviewer"
@@ -26,15 +33,6 @@ Homepage = "https://github.com/pkaiy81/pyconfviewer"
 dev = [
     "pytest>=6.0.0",
     # add other development dependencies here if needed
-]
-
-[project]
-dependencies = [
-    "pyyaml",
-    "jsonschema",
-    "configparser",
-    "python-dotenv",
-    "jinja2",
 ]
 
 [tool.setuptools]
