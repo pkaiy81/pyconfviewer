@@ -49,6 +49,10 @@ config_generator.generate_config_html(configs, output_dir=output_dir, output_htm
 print(f"Configuration HTML generated at {config_html}")
 ```
 
+Example output:
+
+![config_report.html](image-0.png)
+
 ### 2. Generate an HTML diff report comparing two configuration directories
 
 Compare configuration files in two directories and generate an HTML report at `diff_report.html`.
@@ -70,6 +74,9 @@ diff_generator.generate_diff_html(diffs, output_dir=output_dir, output_html_path
 
 print(f"Diff HTML generated at {diff_html}")
 ```
+
+Example output:
+![diif_report.html](image-1.png)
 
 ## Contributing
 

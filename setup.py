@@ -11,7 +11,7 @@ setup(
         "jsonschema",
         "configparser",
         "python-dotenv",
-        "jinja2",  # Add jinja2 to the list of required packages
+        "jinja2",
     ],
     extras_require={
         "dev": [
