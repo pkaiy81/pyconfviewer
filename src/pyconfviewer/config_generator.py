@@ -1,6 +1,7 @@
 import os
 import json
 import yaml
+import toml
 import configparser
 from dotenv import dotenv_values
 from jinja2 import Environment, FileSystemLoader
@@ -42,6 +43,9 @@ class ConfigGenerator:
                 configs[file_name] = ini_dict
             elif file_name == ".env":
                 configs[file_name] = dotenv_values(file_path)
+            elif file_name.endswith(".toml"):
+                with open(file_path, "r") as f:
+                    configs[file_name] = toml.load(f)
         return configs
 
     def generate_config_html(

@@ -20,7 +20,7 @@
 
     <script>
         // Use embedded JSON data
-        var configsData = JSON.parse("{\".env\": {\"DATABASE_URL\": \"postgres://user:password@localhost:5432/db\", \"SECRET_KEY\": \"mysecretkey\"}, \"file1.yaml\": {\"key1\": \"value1\", \"key2\": \"value2\"}, \"file2.json\": {\"key1\": \"value1\", \"key3\": \"value3\"}, \"settings.ini\": {\"DEFAULT\": {\"serveraliveinterval\": \"45\", \"compression\": \"yes\", \"compressionlevel\": \"9\"}}}");
+        var configsData = JSON.parse("{\".env\": {\"DATABASE_URL\": \"postgres://user:password@localhost:5432/db\", \"SECRET_KEY\": \"mysecretkey\"}, \"file1.yaml\": {\"key1\": \"value1\", \"key2\": \"value2\"}, \"file2.json\": {\"key1\": \"value1\", \"key3\": \"value3\"}, \"settings.ini\": {\"DEFAULT\": {\"serveraliveinterval\": \"45\", \"compression\": \"yes\", \"compressionlevel\": \"9\"}}, \"settings.toml\": {\"title\": \"Configuration Example\", \"version\": \"1.0.0\", \"is_active\": true, \"database\": {\"host\": \"localhost\", \"port\": 5432, \"username\": \"user\", \"password\": \"password\", \"timeout\": 30}, \"features\": {\"enable_logging\": true, \"log_level\": \"info\"}, \"application\": {\"name\": \"Sample App\", \"version\": \"2.0\", \"dependencies\": {\"backend\": \"fastapi\", \"database\": \"postgresql\", \"cache\": \"redis\"}}}}");
 
         $(document).ready(function() {
             var tabList = $('#configTabs');

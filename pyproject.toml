@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyconfviewer"
-version = "0.1.0"
+dynamic = ["version"]
 description = "A Python library for generating HTML views and diffs for configuration files."
 authors = [
     { name = "pkaiy81", email = "pkaiy81@outlook.com" }
@@ -24,7 +24,8 @@ dependencies = [
     "jsonschema",
     "configparser",
     "python-dotenv",
-    "jinja2"
+    "jinja2",
+    "toml",
 ]
 
 [project.urls]

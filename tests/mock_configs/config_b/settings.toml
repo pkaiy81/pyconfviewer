@@ -1,0 +1,25 @@
+# General configuration
+title = "Configuration Example 2"
+version = "1.0.0"
+is_active = true
+
+[database]
+host = "localhost"
+port = 5432
+username = "user"
+password = "password123!"
+timeout = 30
+
+[features]
+enable_logging = true
+log_level = "warning"
+
+# Nested sections
+[application]
+name = "Sample App"
+version = "2.0"
+
+[application.dependencies]
+backend = "fastapi"
+database = "postgresql"
+cache = "redis"
