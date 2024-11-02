@@ -35,10 +35,11 @@ dev = [
     # add other development dependencies here if needed
 ]
 
-[tool.setuptools]
-package-dir = {"" = "src"}
-packages = ["find:"]
-include-package-data = true
+[tool.setuptools.packages.find]
+where = "src"
+include = ["pyconfviewer"]
+exclude = ["tests"]
+
 
 [project.scripts]
 pyconfviewer = "pyconfviewer.__main__:main"
