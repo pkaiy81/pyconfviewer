@@ -19,7 +19,7 @@ cd pyconfviewer
 
 ### 3. Create a Branch
 
-Create a new branch for your contribution:
+Create a new branch from `develop` for your contribution:
 
 ```bash
 git checkout -b feature-or-fix-description
@@ -37,6 +37,14 @@ Ensure that any added functionality is fully tested. Run the tests and make sure
 pytest tests
 ```
 
+Please execute the example/run_generator.py script to ensure that the changes work as expected.
+And, check the generated HTML files in the output directory.
+
+```bash
+pip install -e .
+python examples/run_generator.py
+```
+
 ### 6. Commit and Push Your Changes
 
 Commit your changes with a clear and concise commit message:
@@ -50,10 +58,6 @@ git push origin feature-or-fix-description
 ### 7. Open a Pull Request
 
 Navigate to the `pyconfviewer` repository on GitHub and open a pull request against the `main` branch. Describe the changes you have made, the motivation for the change, and any additional context.
-
-## Code of Conduct
-
-By participating in this project, you agree to abide by the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
