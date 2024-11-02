@@ -51,7 +51,7 @@ print(f"Configuration HTML generated at {config_html}")
 
 Example output:
 
-![config_report.html](https://github.com/pkaiy81/pyconfviewer/blob/develop/examples/images/image-0.png)
+![config_report.html](https://github.com/pkaiy81/pyconfviewer/blob/main/examples/images/image.png)
 
 ### 2. Generate an HTML diff report comparing two configuration directories
 
