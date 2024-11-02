@@ -18,16 +18,16 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 keywords = ["configuration", "HTML", "diff", "YAML", "JSON", "env"]
-dependencies = [
-    "pyyaml",
-    "jsonschema",
-    "configparser",
-    "python-dotenv",
-    "jinja2",
-]
 
 [project.urls]
 Homepage = "https://github.com/pkaiy81/pyconfviewer"
+
+[project.dependencies]
+pyyaml = "*"
+jsonschema = "*"
+configparser = "*"
+python-dotenv = "*"
+jinja2 = "*"
 
 [project.optional-dependencies]
 dev = [
@@ -35,11 +35,13 @@ dev = [
     # add other development dependencies here if needed
 ]
 
-[tool.setuptools.packages.find]
-where = "src"
-include = ["pyconfviewer"]
-exclude = ["tests"]
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["pyconfviewer"]
 
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests"]
 
 [project.scripts]
 pyconfviewer = "pyconfviewer.__main__:main"
