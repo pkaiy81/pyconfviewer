@@ -28,12 +28,14 @@ dev = [
     # add other development dependencies here if needed
 ]
 
-[project.dependencies]
-pyyaml = "*"
-jsonschema = "*"
-configparser = "*"
-python-dotenv = "*"
-jinja2 = "*"
+[project]
+dependencies = [
+    "pyyaml",
+    "jsonschema",
+    "configparser",
+    "python-dotenv",
+    "jinja2",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
