@@ -19,12 +19,16 @@ classifiers = [
 ]
 keywords = ["configuration", "HTML", "diff", "YAML", "JSON", "env"]
 
-[project.dependencies]
-pyyaml = "*"
-jsonschema = "*"
-configparser = "*"
-python-dotenv = "*"
-jinja2 = "*"
+dependencies = [
+    "pyyaml",
+    "jsonschema",
+    "configparser",
+    "python-dotenv",
+    "jinja2"
+]
+
+[project.urls]
+Homepage = "https://github.com/pkaiy81/pyconfviewer"
 
 [project.optional-dependencies]
 dev = [
