@@ -1,5 +1,7 @@
 # pyconfviewer
 
+![PyPI Downloads](https://static.pepy.tech/badge/pyconfviewer)
+
 [pyconfviewer](https://pypi.org/project/pyconfviewer/) is a Python library designed for viewing and comparing configuration files in various formats such as YAML, JSON, INI, and .env. It simplifies the management and review of configuration files by generating visual HTML reports.
 
 Please let me know if you use the other configuration files as issues or pull requests. I will try to add support for them.
